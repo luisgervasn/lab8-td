@@ -32,7 +32,6 @@ jobs:
         docker push $IMAGE_NAME:$GITHUB_SHA
     - name: Deploy to GKE
       run: |
-        gcloud container clusters get-credentials $GKE_CLUSTER --zone
-        $GKE_ZONE
+        gcloud container clusters get-credentials $GKE_CLUSTER --zone $GKE_ZONE
         kubectl apply -f k8s/deployment.yaml
         kubectl apply -f k8s/service.yaml
